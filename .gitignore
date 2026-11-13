@@ -1,0 +1,20 @@
+# Dependensi Node.js (sangat besar, jangan diupload)
+node_modules/
+
+# Berkas rahasia & kredensial database (JANGAN DIPUSH KE GITHUB!)
+.env
+.env.local
+
+# Folder temporary
+scratch/
+.tmp/
+.temp/
+
+# Log sistem
+*.log
+npm-debug.log*
+
+# Berkas sistem operasi
+.DS_Store
+Thumbs.db
+

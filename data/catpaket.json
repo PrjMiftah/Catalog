@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "catagory": "Umrah",
+    "created_at": "2026-10-26 11:21:26.036545+07"
+  },
+  {
+    "id": "2",
+    "catagory": "Haji Khusus &amp; Furoda",
+    "created_at": "2026-10-26 11:21:26.090495+07"
+  },
+  {
+    "id": "3",
+    "catagory": "Haji Terencana",
+    "created_at": "2026-10-26 11:21:26.144654+07"
+  },
+  {
+    "id": "4",
+    "catagory": "Wisata Halal",
+    "created_at": "2026-10-26 11:21:26.191795+07"
+  },
+  {
+    "id": "5",
+    "catagory": "Promo &amp; Seasonal",
+    "created_at": "2026-10-26 11:21:26.244601+07"
+  }
+]

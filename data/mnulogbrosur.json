@@ -1,0 +1,130 @@
+[
+  {
+    "id": "8",
+    "catagory": "Haji Khusus &amp; Furoda",
+    "brosurname": "Brosur Haji Furoda / Mujamalah VVIP",
+    "status": "Active",
+    "catatan": "Berangkat langsung tanpa antri",
+    "created_at": "2026-10-26 11:21:27.052349+07"
+  },
+  {
+    "id": "7",
+    "catagory": "Haji Khusus &amp; Furoda",
+    "brosurname": "Brosur Haji Khusus Kuota Kemenag",
+    "status": "Active",
+    "catatan": "Masa tunggu resmi kemenag",
+    "created_at": "2026-10-26 11:21:27.010486+07"
+  },
+  {
+    "id": "9",
+    "catagory": "Haji Khusus &amp; Furoda",
+    "brosurname": "Brosur Rincian Fasilitas Maktab Haji",
+    "status": "Active",
+    "catatan": "Maktab VIP tenda AC berkarpet",
+    "created_at": "2026-10-26 11:21:27.112059+07"
+  },
+  {
+    "id": "10",
+    "catagory": "Haji Terencana",
+    "brosurname": "Brosur Program Tabungan Haji Terencana",
+    "status": "Active",
+    "catatan": "Skema porsi awal terencana",
+    "created_at": "2026-10-26 11:21:27.159499+07"
+  },
+  {
+    "id": "11",
+    "catagory": "Haji Terencana",
+    "brosurname": "Brosur Skema Angsuran Terencana",
+    "status": "Active",
+    "catatan": "Tabel angsuran berkala",
+    "created_at": "2026-10-26 11:21:27.209299+07"
+  },
+  {
+    "id": "15",
+    "catagory": "Promo &amp; Seasonal",
+    "brosurname": "Flyer Promo Early Bird 1448H",
+    "status": "Active",
+    "catatan": "Diskon khusus pendaftar awal",
+    "created_at": "2026-10-26 11:21:27.40963+07"
+  },
+  {
+    "id": "16",
+    "catagory": "Promo &amp; Seasonal",
+    "brosurname": "Katalog Brosur Milad PT Fath Indah",
+    "status": "Active",
+    "catatan": "Edisi spesial milad travel",
+    "created_at": "2026-10-26 11:21:27.451572+07"
+  },
+  {
+    "id": "5",
+    "catagory": "Umrah",
+    "brosurname": "Paket Umrah Plus Dubai",
+    "status": "Active",
+    "catatan": "Wisata Dubai &amp; Abu Dhabi",
+    "created_at": "2026-10-26 11:21:26.902388+07"
+  },
+  {
+    "id": "4",
+    "catagory": "Umrah",
+    "brosurname": "Paket Umrah Plus Turki 12 Hari",
+    "status": "Active",
+    "catatan": "Wisata sejarah Istanbul &amp; Bursa",
+    "created_at": "2026-10-26 11:21:26.870202+07"
+  },
+  {
+    "id": "2",
+    "catagory": "Umrah",
+    "brosurname": "Paket Umrah Ramadhan Awal",
+    "status": "Active",
+    "catatan": "Brosur paket awal Ramadhan",
+    "created_at": "2026-10-26 11:21:26.794373+07"
+  },
+  {
+    "id": "3",
+    "catagory": "Umrah",
+    "brosurname": "Paket Umrah Ramadhan Lailatul Qadar",
+    "status": "Active",
+    "catatan": "Brosur paket 10 hari akhir Ramadhan",
+    "created_at": "2026-10-26 11:21:26.827913+07"
+  },
+  {
+    "id": "1",
+    "catagory": "Umrah",
+    "brosurname": "Paket Umrah Reguler 9 Hari",
+    "status": "Active",
+    "catatan": "Brosur paket standar bintang 4",
+    "created_at": "2026-10-26 11:21:26.738808+07"
+  },
+  {
+    "id": "6",
+    "catagory": "Umrah",
+    "brosurname": "Paket Umrah VIP Bintang 5",
+    "status": "Active",
+    "catatan": "Hotel depan pelataran Masjidil Haram",
+    "created_at": "2026-10-26 11:21:26.960307+07"
+  },
+  {
+    "id": "14",
+    "catagory": "Wisata Halal",
+    "brosurname": "Brosur Tour Muslim Eropa Barat",
+    "status": "Active",
+    "catatan": "Paris, Swiss, Italia &amp; Belanda",
+    "created_at": "2026-10-26 11:21:27.35107+07"
+  },
+  {
+    "id": "12",
+    "catagory": "Wisata Halal",
+    "brosurname": "Brosur Tour Muslim Turki Cappadochia",
+    "status": "Active",
+    "catatan": "Paket liburan musim dingin &amp; semi",
+    "created_at": "2026-10-26 11:21:27.259255+07"
+  },
+  {
+    "id": "13",
+    "catagory": "Wisata Halal",
+    "brosurname": "Brosur Wisata Halal Aqsho - Jordan - Mesir",
+    "status": "Active",
+    "catatan": "Napak tilas tiga masjid suci",
+    "created_at": "2026-10-26 11:21:27.309754+07"
+  }
+]
