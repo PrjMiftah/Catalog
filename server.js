@@ -21,6 +21,7 @@ if (!fs.existsSync(UPLOADS_DIR)) {
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 }
 app.use(express.static(PUBLIC_DIR));
+app.use(express.static(__dirname));
 
 // ============================================================================
 // AUTHENTICATION & SECURITY (ADMIN ONLY)
