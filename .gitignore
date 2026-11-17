@@ -5,6 +5,10 @@ node_modules/
 .env
 .env.local
 
+# File zip arsip
+*.zip
+catalog-cpanel-ready.zip
+
 # Folder temporary
 scratch/
 .tmp/

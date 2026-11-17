@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="promoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180e29"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+    <linearGradient id="promoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1100" fill="url(#promoBg)"/>
+  <rect x="25" y="25" width="750" height="1050" rx="16" fill="none" stroke="#ec4899" stroke-width="2" stroke-opacity="0.3"/>
+  <rect x="35" y="35" width="730" height="1030" rx="12" fill="none" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.2"/>
+
+  <!-- Header -->
+  <g transform="translate(400, 85)" text-anchor="middle">
+    <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20" fill="#38bdf8" letter-spacing="4">PT. FATH INDAH TRAVEL SERVICE</text>
+    <text y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="12" fill="#94a3b8" letter-spacing="2">PROMOSI &amp; SEASONAL PROGRAM 1448H</text>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="200" y="140" width="400" height="42" rx="21" fill="url(#promoGradient)"/>
+  <text x="400" y="167" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">🔥 SPECIAL PROMO EARLY BIRD</text>
+
+  <!-- Main Headline -->
+  <g transform="translate(400, 235)" text-anchor="middle">
+    <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="36" fill="#ffffff">DISKON HINGGA RP 2.500.000</text>
+    <text y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="20" fill="#fbbf24">KHUSUS PENDAFTAR PERTAMA MUSIM 1448H</text>
+    <text y="68" font-family="'JetBrains Mono', monospace" font-size="14" fill="#38bdf8">[Samarinda] [Early Bird Promo Musim Depan] [9D] [01 Nov 2026]</text>
+  </g>
+
+  <!-- Promo Box -->
+  <g transform="translate(70, 340)">
+    <rect width="660" height="240" rx="14" fill="#131e36" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="330" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="22" fill="#fbbf24" text-anchor="middle">SYARAT &amp; KETENTUAN EARLY BIRD:</text>
+    <text x="50" y="95" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#cbd5e1">1. Berlaku untuk booking seat paket keberangkatan musim depan 1448H.</text>
+    <text x="50" y="130" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#cbd5e1">2. Cukup DP Rp 5.000.000 / Jamaah untuk mengunci harga promo.</text>
+    <text x="50" y="165" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#cbd5e1">3. Pelunasan dapat dicicil hingga 45 hari sebelum jadwal keberangkatan.</text>
+    <text x="50" y="200" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="14" fill="#f87171">4. Kuota sangat terbatas: Hanya 45 seat per kantor cabang!</text>
+  </g>
+
+  <!-- Benefits Section -->
+  <g transform="translate(70, 610)">
+    <rect width="660" height="240" rx="12" fill="#091224" stroke="rgba(255,255,255,0.08)"/>
+    <text x="40" y="45" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#ffffff">BONUS EKSKLUSIF PENDAFTAR EARLY BIRD:</text>
+    
+    <text x="40" y="90" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#34d399">🎁 GRATIS Pembuatan Paspor Baru atau Biaya Rekomendasi Kemenag</text>
+    <text x="40" y="125" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#34d399">🎁 GRATIS City Tour Thaif Lengkap dengan Nasi Mandhi &amp; Kereta Gantung</text>
+    <text x="40" y="160" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#34d399">🎁 Upgrade Koper Eksklusif Fiber 24 Inch dengan TSA Lock</text>
+    <text x="40" y="195" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#34d399">🎁 Paket Internet Roaming Unlimited Saudi selama 10 Hari</text>
+  </g>
+
+  <!-- Expiration Banner -->
+  <g transform="translate(70, 880)">
+    <rect width="660" height="110" rx="12" fill="#2d1215" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="330" y="45" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#fca5a5" text-anchor="middle">⚠️ STATUS PROGRAM: EXPIRED (MASA BERLAKU BERAKHIR)</text>
+    <text x="330" y="75" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#fecaca" text-anchor="middle">Periode promo telah berakhir pada 25 Oktober 2026. Pantau promo gelombang berikutnya!</text>
+  </g>
+
+  <!-- Footer Contact -->
+  <g transform="translate(400, 1030)" text-anchor="middle">
+    <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#ffffff">INFORMASI PROMOSI PT FATH INDAH TRAVEL:</text>
+    <text y="24" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#22c55e">WhatsApp CS: 0852-1855-7733 | Instagram: @fathindahtravel</text>
+  </g>
+</svg>
+

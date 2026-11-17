@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog & Manajemen Brosur - PT. Fath Indah Travel Service</title>
+
+  <!-- Google Typography: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+
+<body>
+
+  <!-- Top Application Navbar -->
+  <header class="app-navbar">
+    <div class="navbar-container">
+      <div class="brand-section">
+        <img src="assets/logo.png" alt="Logo PT Fath Indah" class="brand-logo" onerror="this.style.display='none'">
+        <div class="brand-titles">
+          <div class="brand-title">
+            <span>PT. FATH INDAH</span>
+            <span class="gold">TRAVEL SERVICE</span>
+          </div>
+          <div class="brand-subtitle">
+            Catalog Paket Brosur Promosi Umrah, Haji Khusus & Wisata Halal
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-actions">
+        <!-- Belum Login (Guest/Publik) -->
+        <button type="button" class="btn-auth-nav" id="btnNavLogin" onclick="openLoginModal()" title="Login Petugas / Administrator">
+          <i class="fa-solid fa-lock"></i>
+          <span>Login Petugas</span>
+        </button>
+
+        <!-- Sudah Login (Admin Aktif) -->
+        <div class="admin-session-badge" id="boxAdminSession" style="display: none;">
+          <div class="admin-badge-pill" title="Status: Administrator Aktif">
+            <i class="fa-solid fa-user-shield"></i>
+            <span>Admin</span>
+          </div>
+          <button type="button" class="btn-auth-logout" onclick="handleLogout()" title="Keluar dan Kembali ke Menu Awal">
+            <i class="fa-solid fa-power-off"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="main-wrapper">
+    <div class="content-card">
+
+      <!-- Module Top Bar with Tabs -->
+      <div class="brosur-top-header">
+        <div class="brosur-header-title">
+          <div class="card-title">
+            <i class="fa-solid fa-bullhorn" style="color:var(--gold-light);"></i>
+            <span>Catalog & Manajemen Brosur Promosi</span>
+          </div>
+          <div class="brosur-header-subtitle">
+            Daftar arsip & publikasi brosur paket perjalanan PT. Fath Indah Travel Service
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Switcher Navigation (2 TAB UTAMA SESUAI SUMBER ASLI) -->
+      <div class="brosur-tabs-nav">
+        <button type="button" class="brosur-tab-btn active" id="tabBtnBrosurList" onclick="switchBrosurTab('list')">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>📋 Daftar & Arsip Brosur (LogBrosur)</span>
+        </button>
+        <button type="button" class="brosur-tab-btn" id="tabBtnBrosurInput" onclick="switchBrosurTab('input')">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>🚀 Input Brosur Baru (Form Inputan)</span>
+          <span class="auth-lock-badge" id="inputTabLockBadge" title="Memerlukan Login Admin"><i class="fa-solid fa-lock"></i></span>
+        </button>
+      </div>
+
+      <!-- ================================================================
+           TAB PANE 1: DAFTAR & ARSIP BROSUR
+           ================================================================ -->
+      <div class="brosur-tab-pane active" id="tabPaneBrosurList">
+
+        <!-- Quick Stats Grid -->
+        <div class="brosur-stats-grid">
+          <div class="brosur-stat-card">
+            <div class="brosur-stat-icon gold"><i class="fa-solid fa-file-pdf"></i></div>
+            <div>
+              <div class="brosur-stat-val" id="brosurStatTotal">0</div>
+              <div class="brosur-stat-lbl">Total Brosur Terdaftar</div>
+            </div>
+          </div>
+
+          <div class="brosur-stat-card">
+            <div class="brosur-stat-icon emerald"><i class="fa-solid fa-tags"></i></div>
+            <div>
+              <div class="brosur-stat-val" id="brosurStatCategory">0</div>
+              <div class="brosur-stat-lbl">Kategori Materi</div>
+            </div>
+          </div>
+
+          <div class="brosur-stat-card">
+            <div class="brosur-stat-icon blue"><i class="fa-solid fa-circle-check"></i></div>
+            <div>
+              <div class="brosur-stat-val" id="brosurStatActive">0</div>
+              <div class="brosur-stat-lbl">Brosur Aktif</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="brosur-toolbar">
+          <div class="brosur-search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="brosurSearchInput" placeholder="Cari nama brosur, kategori, atau catatan..."
+              oninput="onBrosurFilterChange()">
+          </div>
+
+          <select id="brosurWilayahFilter" class="brosur-filter-select" onchange="onBrosurFilterChange()">
+            <option value="ALL">Semua Wilayah</option>
+          </select>
+
+          <select id="brosurCategoryFilter" class="brosur-filter-select" onchange="onBrosurFilterChange()">
+            <option value="ALL">Semua Kategori</option>
+          </select>
+
+          <!-- Filter Status Brosur (Default: Aktif) -->
+          <select id="brosurStatusFilter" class="brosur-filter-select" onchange="onBrosurFilterChange()">
+            <option value="Aktif" selected>Status: Aktif</option>
+            <option value="Expired">Status: Expired</option>
+            <option value="ALL">Semua Status</option>
+          </select>
+
+          <!-- View Mode Switcher: Tabel vs Split Listing & Preview -->
+          <div class="brosur-view-toggle-group" role="group" aria-label="Mode Tampilan">
+            <button type="button" class="btn-brosur-view active" id="btnViewModeTable"
+              onclick="setBrosurViewMode('table')" title="Tampilan Tabel List">
+              <i class="fa-solid fa-table-list"></i>
+              <span>Tabel List</span>
+            </button>
+            <button type="button" class="btn-brosur-view" id="btnViewModeSplit"
+              onclick="setBrosurViewMode('split')" title="Tampilan Listing & Pratinjau Dokumen Drive">
+              <i class="fa-solid fa-table-columns"></i>
+              <span>Listing & Preview Drive</span>
+            </button>
+          </div>
+
+          <button type="button" class="btn-refresh-brosur" onclick="reloadBrosurData()" title="Segarkan Data">
+            <i class="fa-solid fa-rotate"></i>
+            <span>Refresh</span>
+          </button>
+
+          <button type="button" class="btn-add-brosur-shortcut" onclick="switchBrosurTab('input')">
+            <i class="fa-solid fa-plus"></i>
+            <span>Input Brosur Baru</span>
+          </button>
+        </div>
+
+        <!-- 1. TAMPILAN TABEL LIST (Default) -->
+        <div id="brosurTableViewContainer" class="table-responsive brosur-table-container">
+          <table class="table-brosur">
+            <thead>
+              <tr>
+                <th style="width: 45px;">NO</th>
+                <th>TGL UPLOAD</th>
+                <th>VALID UNTIL</th>
+                <th>WILAYAH</th>
+                <th>KATEGORI</th>
+                <th>NAMA BROSUR</th>
+                <th style="text-align: center;">STATUS BROSUR</th>
+                <th>CATATAN</th>
+                <th style="text-align: center; width: 150px;">AKSI</th>
+              </tr>
+            </thead>
+            <tbody id="logBrosurTableBody">
+              <tr>
+                <td colspan="9" style="text-align:center; padding:36px; color:#64748b;">
+                  <i class="fa-solid fa-spinner fa-spin" style="color:var(--gold-light); font-size:1.5rem;"></i>
+                  <div style="margin-top:10px;">Memuat data brosur...</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 2. TAMPILAN LISTING & PREVIEW GOOGLE DRIVE (Split View Berdampingan) -->
+        <div id="brosurSplitViewContainer" class="brosur-split-container" style="display: none;">
+          <!-- Sisi Kiri: Listing Kebawah Info Dokumen -->
+          <div class="brosur-split-left" id="brosurSplitLeft">
+            <div class="brosur-split-list-header">
+              <div class="brosur-split-list-title">
+                <i class="fa-solid fa-layer-group" style="color:var(--gold-light);"></i>
+                <span>Daftar Dokumen Brosur</span>
+                <span class="brosur-split-badge-count" id="brosurSplitCount">0 Berkas</span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-dim);">Klik kartu untuk membuka pratinjau</div>
+            </div>
+            <div class="brosur-split-cards" id="brosurSplitCardsList">
+              <!-- Populated via renderBrosurSplitView() -->
+            </div>
+          </div>
+
+          <!-- Sisi Kanan (Tab Kanan): Tampilan Langsung Dokumen Google Drive -->
+          <div class="brosur-split-right" id="brosurSplitRight">
+            <div class="brosur-preview-header">
+              <div class="brosur-preview-title-area">
+                <div class="brosur-preview-badge" id="brosurPreviewBadge">GOOGLE DRIVE LIVE PREVIEW</div>
+                <h4 class="brosur-preview-doc-title" id="brosurPreviewTitle">Pilih Dokumen Brosur</h4>
+                <div class="brosur-preview-meta" id="brosurPreviewMeta">-</div>
+              </div>
+              <div class="brosur-preview-actions">
+                <button type="button" class="btn-preview-tool btn-mobile-scroll-up" onclick="scrollToBrosurList()"
+                  title="Kembali ke Daftar Brosur (Atas)">
+                  <i class="fa-solid fa-arrow-up"></i>
+                </button>
+                <button type="button" class="btn-preview-tool" onclick="reloadActiveDrivePreview()"
+                  title="Muat Ulang Tampilan">
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <button type="button" class="btn-preview-tool" onclick="copyActiveDriveLink()"
+                  title="Salin Tautan">
+                  <i class="fa-solid fa-link"></i>
+                </button>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="btn-preview-open"
+                  id="btnPreviewOpenExternal" title="Buka Dokumen di Google Drive Tab Baru">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span>Buka Drive</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Tab Navigasi Panel Kanan -->
+            <div class="brosur-preview-tabs-nav">
+              <button type="button" class="brosur-preview-tab-btn active" id="btnPrevTabDoc"
+                onclick="switchPreviewSubTab('doc')">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span>Tampilan Dokumen Drive</span>
+              </button>
+              <button type="button" class="brosur-preview-tab-btn" id="btnPrevTabDetail"
+                onclick="switchPreviewSubTab('detail')">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Info & Ringkasan Lengkap</span>
+              </button>
+            </div>
+
+            <!-- Sub-Tab 1: Live Google Drive Document Iframe -->
+            <div class="brosur-preview-content active" id="panePrevTabDoc">
+              <div class="brosur-iframe-wrapper">
+                <div class="brosur-iframe-loading" id="brosurIframeLoader">
+                  <i class="fa-solid fa-spinner fa-spin" style="font-size:1.8rem; color:var(--gold-light);"></i>
+                  <span>Menghubungkan ke Google Drive Viewer...</span>
+                </div>
+                <iframe id="brosurPreviewIframe" src="about:blank" allow="autoplay" allowfullscreen></iframe>
+              </div>
+              <div class="brosur-iframe-footer">
+                <span><i class="fa-solid fa-shield-halved" style="color:#38bdf8; margin-right:5px;"></i> Google Drive Secure Viewer PT. Fath Indah</span>
+                <a href="#" target="_blank" rel="noopener noreferrer" id="brosurIframeDirectFallback">
+                  Buka dokumen langsung di Google Drive <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem;"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Sub-Tab 2: Detail Metadata Lengkap & Aksi -->
+            <div class="brosur-preview-content" id="panePrevTabDetail" style="padding:18px; overflow-y:auto;">
+              <div id="brosurDetailBody">
+                <!-- Render detail metadata & WhatsApp / Edit / Delete buttons -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================================================================
+           TAB PANE 2: INPUT BROSUR BARU
+           ================================================================ -->
+      <div class="brosur-tab-pane" id="tabPaneBrosurInput">
+
+        <div class="brosur-form-card">
+          <div class="brosur-form-title">
+            <i class="fa-solid fa-file-circle-plus" style="color:var(--gold-light);"></i>
+            <span>Formulir Pendaftaran & Input Brosur Baru</span>
+          </div>
+
+          <form id="brosurInputForm" onsubmit="submitBrosurForm(event)">
+            <!-- Hidden inputs -->
+            <input type="hidden" id="inputBrosurTglUpload">
+            <input type="hidden" id="inputBrosurLink"
+              value="https://drive.google.com/drive/folders/1nDoE-UPkzVwt6m_OwOpP6G-1O8w4T9wc">
+
+            <!-- Baris 1: Wilayah Brosur & Kategori Brosur -->
+            <div class="form-row-grid">
+              <div class="form-group">
+                <label class="form-label" for="inputBrosurWilayah">
+                  <i class="fa-solid fa-map-location-dot" style="color:var(--gold-light);"></i> Wilayah Brosur
+                  (<code style="color:var(--gold-light);">namakanwil</code>) <span style="color:#ef4444;">*</span>
+                </label>
+                <select id="inputBrosurWilayah" class="form-input" required onchange="onBrosurWilayahChange()">
+                  <option value="">-- Pilih Wilayah Brosur --</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="inputBrosurCategory">
+                  <i class="fa-solid fa-layer-group" style="color:var(--gold-light);"></i> Kategori Brosur (<code
+                    style="color:var(--gold-light);">catagory</code>) <span style="color:#ef4444;">*</span>
+                </label>
+                <select id="inputBrosurCategory" class="form-input" required onchange="onBrosurCategoryChange()">
+                  <option value="">-- Pilih Kategori --</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Baris 2: Nama Brosur (Master) & Valid Until / Masa Berlaku Brosur -->
+            <div class="form-row-grid">
+              <div class="form-group" id="groupBrosurName" style="display:none; transition: all 0.3s ease;">
+                <label class="form-label" for="inputBrosurName">
+                  <i class="fa-solid fa-file-signature" style="color:var(--gold-light);"></i> Nama Brosur Master
+                  (<code style="color:var(--gold-light);">brosurname</code>) <span style="color:#ef4444;">*</span>
+                </label>
+                <select id="inputBrosurName" class="form-input" onchange="onBrosurNameChange()">
+                  <option value="">-- Pilih Kategori Terlebih Dahulu --</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="inputBrosurValidUntil">
+                  <i class="fa-regular fa-calendar-check" style="color:#ffffff;"></i> Valid Until / Masa Berlaku
+                  Brosur (<code style="color:#ffffff;">validuntil</code>) <span style="color:#ef4444;">*</span>
+                </label>
+                <input type="date" id="inputBrosurValidUntil" class="form-input dtpicker-white" required>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">
+                  <i class="fa-solid fa-circle-info"></i> Pilih tanggal batas akhir masa berlaku brosur.
+                </div>
+              </div>
+            </div>
+
+            <!-- Baris 3: Ambil Berkas Brosur dari Komputer Lokal -->
+            <div class="form-group">
+              <div
+                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+                <label class="form-label" style="margin-bottom:0;">
+                  <i class="fa-solid fa-folder-open" style="color:var(--gold-light);"></i> Ambil Berkas Brosur dari Komputer Anda
+                </label>
+                <div id="gdriveWebhookStatusPill" class="gdrive-status-badge pending"
+                  onclick="openGDriveConfigModal()" title="Klik untuk mengkonfigurasi Auto-Upload">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <span id="gdriveWebhookStatusText">Auto-Upload Berkas</span>
+                  <i class="fa-solid fa-gear" style="margin-left:4px;"></i>
+                </div>
+              </div>
+
+              <div class="brosur-drop-zone" id="brosurDropZone"
+                onclick="document.getElementById('localBrosurFileInput').click()">
+                <input type="file" id="localBrosurFileInput" style="display:none;"
+                  accept=".pdf,image/*,.doc,.docx" onchange="handleLocalFileSelect(event)">
+                <div class="drop-zone-icon">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="drop-zone-text" id="dropZoneText">
+                  <strong>Klik untuk memilih file</strong> atau seret file brosur ke sini
+                </div>
+                <div class="drop-zone-sub">
+                  Mendukung format: PDF, JPG, PNG, WEBP, Word Doc (Maks 50 MB)
+                </div>
+              </div>
+
+              <!-- Selected File Info Banner -->
+              <div class="selected-file-banner" id="selectedFileBanner" style="display:none;">
+                <div class="file-info-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+                <div class="file-info-details">
+                  <div class="file-info-name" id="selectedFileName">Nama_file.pdf</div>
+                  <div class="file-info-meta" id="selectedFileMeta">Ukuran: 0 KB • Tipe: PDF</div>
+                </div>
+                <button type="button" class="btn-clear-file" onclick="clearSelectedFile()" title="Hapus Pilihan File">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Baris 4: 3 Bagian Komponen Penamaan Otomatis (Rincian Komponen Paket) -->
+            <div class="brosur-composite-section">
+              <div
+                style="font-size:0.86rem; font-weight:700; color:#ffffff; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-sliders" style="color:var(--gold-light);"></i>
+                <span>Rincian Komponen Paket (Direkam ke LogBrosur: <code>namapaket</code>):</span>
+              </div>
+
+              <div class="form-row-grid-3">
+                <!-- a. Nama Paket (Format Text) -->
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="inputBrosurNamaPaket" style="color:#ffffff;">
+                    <i class="fa-solid fa-box-archive" style="color:#ffffff;"></i> a. Nama Paket <span
+                      style="color:#ef4444;">*</span>
+                  </label>
+                  <input type="text" id="inputBrosurNamaPaket" class="form-input" placeholder="Contoh: Saphire"
+                    oninput="updateBrosurCompositeName()">
+                </div>
+
+                <!-- b. Jumlah Hari (Dropdown 9, 12, Customs) -->
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="inputBrosurJumlahHari" style="color:#ffffff;">
+                    <i class="fa-solid fa-clock" style="color:#ffffff;"></i> b. Jumlah Hari <span
+                      style="color:#ef4444;">*</span>
+                  </label>
+                  <select id="inputBrosurJumlahHari" class="form-input" onchange="onJumlahHariChange()">
+                    <option value="">-- Pilih Hari --</option>
+                    <option value="9">9 Hari (9D)</option>
+                    <option value="12">12 Hari (12D)</option>
+                    <option value="custom">Customs</option>
+                  </select>
+                  <div id="groupCustomJumlahHari" style="display:none; margin-top:6px;">
+                    <input type="text" id="inputBrosurCustomHari" class="form-input"
+                      placeholder="Contoh: 29 34 atau 15" oninput="updateBrosurCompositeName()">
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">
+                      <i class="fa-solid fa-circle-info"></i> Bisa diisi dua tanggal/hari (cth: 29 34 &rarr; 29H 34H)
+                    </div>
+                  </div>
+                </div>
+
+                <!-- c. Tanggal Berangkat (DTPICKER) -->
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="inputBrosurTglBerangkat" style="color:#ffffff;">
+                    <i class="fa-regular fa-calendar-days" style="color:#ffffff;"></i> c. Tanggal Berangkat <span
+                      style="color:#ef4444;">*</span>
+                  </label>
+                  <input type="date" id="inputBrosurTglBerangkat" class="form-input dtpicker-white"
+                    onchange="updateBrosurCompositeName()">
+                </div>
+              </div>
+
+              <!-- Live Generated Filename Preview -->
+              <div style="margin-top:14px;">
+                <label class="form-label" style="font-size:0.76rem; color:var(--text-dim); margin-bottom:4px;">
+                  FORMAT NAMA PAKET OTOMATIS:
+                </label>
+                <div class="specific-filename-box">
+                  <div class="specific-filename-text" id="generatedSpecificFileName">
+                    [Wilayah] [Nama Paket] [Jumlah Hari] [Tanggal Berangkat]
+                  </div>
+                  <button type="button" class="btn-copy-filename" onclick="copySpecificFileName()" id="btnCopyFileName"
+                    title="Salin Nama Paket">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Salin</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Baris 5: Catatan / Deskripsi Tambahan -->
+            <div class="form-group">
+              <label class="form-label" for="inputBrosurCatatan">
+                <i class="fa-solid fa-comment-dots" style="color:var(--gold-light);"></i> Catatan / Deskripsi Tambahan
+                (<code style="color:var(--gold-light);">catatan</code>)
+              </label>
+              <textarea id="inputBrosurCatatan" class="form-input" rows="3"
+                placeholder="Masukkan keterangan brosur, target promosi, atau rincian paket..."></textarea>
+            </div>
+
+            <!-- Submit Button Bar -->
+            <div class="brosur-form-footer">
+              <button type="button" class="btn-secondary" onclick="resetBrosurForm()">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Reset Form</span>
+              </button>
+              <button type="submit" class="btn-gold" id="btnSubmitBrosur">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Simpan Brosur</span>
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ======================================================================
+       MODAL: UPDATE STATUS BROSUR (AKTIF / EXPIRED)
+       ====================================================================== -->
+  <div class="gdrive-modal-backdrop" id="updateStatusModal" style="display:none;">
+    <div class="gdrive-modal-card" style="max-width:520px;">
+      <div class="gdrive-modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="gdrive-modal-icon"
+            style="background:rgba(56, 189, 248, 0.15); border-color:rgba(56, 189, 248, 0.35); color:#38bdf8;">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+          <div>
+            <h3 class="gdrive-modal-title">Update Status Brosur</h3>
+            <p class="gdrive-modal-subtitle">Kelola masa berlaku dan status publikasi brosur</p>
+          </div>
+        </div>
+        <button type="button" class="gdrive-modal-close" onclick="closeUpdateStatusModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="gdrive-modal-body">
+        <input type="hidden" id="modalStatusBrosurId">
+
+        <div class="brosur-info-summary-grid">
+          <div class="brosur-info-item" style="grid-column: span 2;">
+            <label>Nama Brosur</label>
+            <span id="modalStatusBrosurName">-</span>
+          </div>
+          <div class="brosur-info-item">
+            <label>Wilayah</label>
+            <span id="modalStatusBrosurWilayah">-</span>
+          </div>
+          <div class="brosur-info-item">
+            <label>Kategori</label>
+            <span id="modalStatusBrosurCat">-</span>
+          </div>
+          <div class="brosur-info-item">
+            <label>Tanggal Upload</label>
+            <span id="modalStatusBrosurTglUpload">-</span>
+          </div>
+          <div class="brosur-info-item">
+            <label>Valid Until</label>
+            <span id="modalStatusBrosurValidUntil">-</span>
+          </div>
+          <div class="brosur-info-item" style="grid-column: span 2;" id="modalStatusBrosurLinkContainer">
+            <label>Tautan Berkas</label>
+            <a href="#" id="modalStatusBrosurLink" target="_blank" rel="noopener noreferrer"
+              style="color:#38bdf8; font-size:0.82rem; word-break:break-all;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Berkas Brosur
+            </a>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:16px;">
+          <label class="form-label" for="modalStatusSelect">
+            <i class="fa-solid fa-toggle-on" style="color:var(--gold-light);"></i> Pilih Status Brosur
+          </label>
+          <select id="modalStatusSelect" class="form-input" style="font-weight:600;">
+            <option value="Aktif">🟢 Aktif (Masih Berlaku / Dapat Dipublikasikan)</option>
+            <option value="Expired">🔴 Expired (Masa Berlaku Berakhir)</option>
+          </select>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:6px;">
+            <i class="fa-solid fa-circle-info"></i> Status ini akan langsung tersimpan di sistem.
+          </div>
+        </div>
+
+        <div
+          style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:16px;">
+          <button type="button" class="btn-secondary" onclick="closeUpdateStatusModal()">Batal</button>
+          <button type="button" class="btn-gold" id="btnSaveStatusChange" onclick="saveBrochureStatus()">
+            <i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan Status
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: KONFIGURASI AUTO-UPLOAD GOOGLE DRIVE APPS SCRIPT
+       ====================================================================== -->
+  <div class="gdrive-modal-backdrop" id="gdriveConfigModal" style="display:none;">
+    <div class="gdrive-modal-card">
+      <div class="gdrive-modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="gdrive-modal-icon">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+          <div>
+            <h3 class="gdrive-modal-title">Konfigurasi Auto-Upload Berkas</h3>
+            <p class="gdrive-modal-subtitle">Integrasi Webhook Google Apps Script</p>
+          </div>
+        </div>
+        <button type="button" class="gdrive-modal-close" onclick="closeGDriveConfigModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="gdrive-modal-body">
+        <div class="gdrive-alert info">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>
+            Opsional: Anda dapat menghubungkan <strong>Webhook Google Apps Script</strong> agar berkas brosur otomatis terunggah ke Google Drive dan langsung mendapatkan tautan publik!
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:14px;">
+          <label class="form-label">
+            <i class="fa-solid fa-link" style="color:var(--gold-light);"></i> URL Web App Google Apps Script
+          </label>
+          <div style="display:flex; gap:8px;">
+            <input type="url" id="inputGDriveScriptUrl" class="form-input"
+              placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+              style="font-family:'JetBrains Mono', monospace; font-size:0.82rem;">
+            <button type="button" class="btn-gold" style="white-space:nowrap; padding:0 16px;"
+              onclick="testGDriveWebhook()">
+              <i class="fa-solid fa-plug"></i> Test
+            </button>
+          </div>
+          <div id="gdriveTestStatus" style="margin-top:6px; font-size:0.8rem; display:none;"></div>
+        </div>
+
+        <div class="gdrive-steps-accordion">
+          <div class="gdrive-steps-header" onclick="toggleGDriveGuide()">
+            <span style="font-weight:700; color:var(--gold-light); font-size:0.85rem;">
+              <i class="fa-solid fa-book"></i> Cara Pasang Webhook Auto-Upload (1 Menit)
+            </span>
+            <i class="fa-solid fa-chevron-down" id="gdriveGuideChevron"></i>
+          </div>
+          <div class="gdrive-steps-content" id="gdriveStepsContent" style="display:none;">
+            <ol style="padding-left:18px; margin:8px 0; font-size:0.8rem; color:var(--text-muted); line-height:1.6;">
+              <li>Buka <a href="https://script.google.com" target="_blank"
+                  style="color:#38bdf8; text-decoration:underline;">script.google.com</a> dengan akun Google Drive Anda.</li>
+              <li>Klik <strong>New project</strong>, beri nama <em>Uploader Brosur Fath Indah</em>.</li>
+              <li>Tempel skrip di bawah lalu simpan.</li>
+              <li>Klik <strong>Deploy</strong> -> <strong>New deployment</strong>, pilih <strong>Web app</strong>.</li>
+              <li>Atur <em>Execute as:</em> <strong>Me</strong> dan <em>Who has access:</em> <strong>Anyone</strong>.</li>
+              <li>Salin URL Web App dan tempelkan pada kolom di atas!</li>
+            </ol>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; margin-top:8px; margin-bottom:4px;">
+              <span style="font-size:0.75rem; color:var(--text-dim); font-weight:600;">KODE WEBHOOK APPS SCRIPT:</span>
+              <button type="button" class="btn-copy-filename" onclick="copyAppsScriptCode()" id="btnCopyScriptCode"
+                style="font-size:0.75rem; padding:4px 10px;">
+                <i class="fa-regular fa-copy"></i> <span>Salin Kode Skrip</span>
+              </button>
+            </div>
+            <pre class="gdrive-code-box" id="appsScriptCodeBlock"></pre>
+          </div>
+        </div>
+
+        <div
+          style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px; border-top:1px solid var(--border-subtle); padding-top:16px;">
+          <button type="button" class="btn-secondary" onclick="closeGDriveConfigModal()">Tutup</button>
+          <button type="button" class="btn-gold" onclick="saveGDriveConfig()">
+            <i class="fa-solid fa-floppy-disk"></i> Simpan URL
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: LOGIN ADMINISTRATOR / PETUGAS
+       User: Admin | Password: Fath2026!
+       ====================================================================== -->
+  <div class="gdrive-modal-backdrop" id="loginModal" style="display:none;">
+    <div class="gdrive-modal-card" style="max-width:440px;">
+      <div class="gdrive-modal-header">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="gdrive-modal-icon" style="background:rgba(245, 158, 11, 0.15); border-color:rgba(245, 158, 11, 0.4); color:var(--gold-light);">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <div>
+            <h3 class="gdrive-modal-title">Login Administrator</h3>
+            <p class="gdrive-modal-subtitle">Akses Khusus Manajemen & Input Brosur</p>
+          </div>
+        </div>
+        <button type="button" class="gdrive-modal-close" onclick="closeLoginModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="gdrive-modal-body">
+        <form id="formAdminLogin" onsubmit="handleAdminLogin(event)">
+          <div id="loginAlertBox" style="display:none; padding:10px 14px; border-radius:6px; font-size:0.82rem; margin-bottom:14px; align-items:center; gap:8px;">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span id="loginAlertText"></span>
+          </div>
+
+          <div class="form-group" style="margin-bottom:14px;">
+            <label class="form-label" for="loginUsername">
+              <i class="fa-solid fa-user" style="color:var(--gold-light);"></i> Username
+            </label>
+            <input type="text" id="loginUsername" class="form-input" placeholder="Admin" required autocomplete="username">
+          </div>
+
+          <div class="form-group" style="margin-bottom:20px;">
+            <label class="form-label" for="loginPassword">
+              <i class="fa-solid fa-lock" style="color:var(--gold-light);"></i> Password
+            </label>
+            <div style="position:relative;">
+              <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required autocomplete="current-password" style="padding-right:40px;">
+              <button type="button" onclick="togglePasswordVisibility()" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-dim); cursor:pointer;">
+                <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:10px; border-top:1px solid var(--border-subtle); padding-top:16px;">
+            <button type="button" class="btn-secondary" onclick="closeLoginModal()">Batal</button>
+            <button type="submit" class="btn-gold" id="btnLoginSubmit">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              <span>Masuk (Login)</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div id="appToast">
+    <i class="toast-icon fa-solid fa-circle-check"></i>
+    <span class="toast-text">Pemberitahuan</span>
+  </div>
+
+  <!-- Application Script -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>

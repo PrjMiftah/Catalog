@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hajiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1220"/>
+      <stop offset="50%" stop-color="#111c33"/>
+      <stop offset="100%" stop-color="#070c17"/>
+    </linearGradient>
+    <linearGradient id="goldHaji" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="30%" stop-color="#fde68a"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1100" fill="url(#hajiBg)"/>
+  <rect x="25" y="25" width="750" height="1050" rx="16" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-opacity="0.4"/>
+  <rect x="35" y="35" width="730" height="1030" rx="12" fill="none" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.2"/>
+
+  <!-- Header -->
+  <g transform="translate(400, 85)" text-anchor="middle">
+    <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20" fill="#38bdf8" letter-spacing="4">PT. FATH INDAH TRAVEL SERVICE</text>
+    <text y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="12" fill="#94a3b8" letter-spacing="2">PENYELENGGARA IBADAH HAJI KHUSUS (PIHK) RESMI KEMENAG RI</text>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="180" y="140" width="440" height="42" rx="21" fill="url(#goldHaji)"/>
+  <text x="400" y="167" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" fill="#070d19" text-anchor="middle" letter-spacing="1.5">HAJI FURODA / MUJAMALAH VVIP 1448 H</text>
+
+  <!-- Main Headline -->
+  <g transform="translate(400, 230)" text-anchor="middle">
+    <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="34" fill="#ffffff">BERANGKAT LANGSUNG TANPA ANTRI</text>
+    <text y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="20" fill="url(#goldHaji)">VISA RESMI HAJI MUJAMALAH KEMENAG RI</text>
+    <text y="68" font-family="'JetBrains Mono', monospace" font-size="14" fill="#38bdf8">[Solo Raya] [Furoda Al-Fath VVIP] [29H 34H] [15 Mei 2027]</text>
+  </g>
+
+  <!-- Key Highlights Grid -->
+  <g transform="translate(70, 340)">
+    <rect width="320" height="170" rx="12" fill="#0f1f38" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="30" y="45" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#fbbf24">⭐️ HOTEL VVIP BINTANG 5</text>
+    <text x="30" y="80" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#ffffff">Makkah: Clock Tower / Fairmont</text>
+    <text x="30" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#ffffff">Madinah: The Oberoi / Dallah Taibah</text>
+    <text x="30" y="135" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#38bdf8">Pelataran Masjidil Haram &amp; Nabawi</text>
+
+    <rect x="340" width="320" height="170" rx="12" fill="#0f1f38" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="370" y="45" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#fbbf24">⛺️ MAKTAB VIP ARMINA</text>
+    <text x="370" y="80" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#ffffff">Maktab Al-Wifaq / Maktab 111-115</text>
+    <text x="370" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#ffffff">Tenda AC Khusus, Kasur &amp; Karpet</text>
+    <text x="370" y="135" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#38bdf8">Dekat Jamarat (Lempar Jumrah)</text>
+  </g>
+
+  <!-- Facilities Section -->
+  <g transform="translate(70, 540)">
+    <rect width="660" height="280" rx="12" fill="#091224" stroke="rgba(255,255,255,0.08)"/>
+    <text x="40" y="40" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#ffffff">FASILITAS LAYANAN VVIP EXCLUSIVE</text>
+    
+    <text x="40" y="80" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#cbd5e1">✔ Penerbangan Kelas Bisnis / Ekonomi Saudia Airlines Direct CGK - JED</text>
+    <text x="40" y="115" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#cbd5e1">✔ Kereta Cepat Haramain High Speed Railway (Makkah - Madinah)</text>
+    <text x="40" y="150" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#cbd5e1">✔ Bimbingan Ibadah Haji Sesuai Sunnah bersama Asatidz Berpengalaman</text>
+    <text x="40" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#cbd5e1">✔ Dokter Pribadi Pendamping Rombongan 24 Jam Selama di Saudi</text>
+    <text x="40" y="220" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#cbd5e1">✔ Hotel Transit VIP di Shisha / Aziziyah Menjelang Puncak Armina</text>
+    <text x="40" y="255" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#cbd5e1">✔ Handling Bagasi &amp; Lounge Bandara CGK &amp; Jeddah</text>
+  </g>
+
+  <!-- Pricing Details -->
+  <g transform="translate(70, 850)">
+    <rect width="660" height="140" rx="12" fill="#091224" stroke="rgba(255,255,255,0.08)"/>
+    <text x="40" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" fill="#f59e0b">PAKET INVESTASI HAJI FURODA:</text>
+    <text x="40" y="75" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#fbbf24">USD $19.500 - $24.000 / Pax</text>
+    <text x="40" y="110" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#94a3b8">Jaminan Uang Kembali (Full Refund Guarantee) Jika Visa Tidak Terbit</text>
+  </g>
+
+  <!-- Footer Contact -->
+  <g transform="translate(400, 1030)" text-anchor="middle">
+    <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#ffffff">KONSULTASI &amp; REGISTRASI KUOTA HAJI:</text>
+    <text y="24" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#22c55e">WhatsApp: 0852-1855-7733 | PT Fath Indah Travel Service</text>
+  </g>
+</svg>
+
